@@ -32,6 +32,8 @@ var migStrategyFlag = flag.String(
 	"none",
 	"pass the desired strategy for exposing MIG devices on GPUs that support it\n"+
 		"[none | single | mixed]")
+var resourceName = flag.String("resourceName", "nvidia.com/gpu",
+	"resourceName defines the resource name to be reported")
 
 func main() {
 	flag.Parse()

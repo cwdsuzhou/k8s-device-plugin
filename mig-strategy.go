@@ -82,7 +82,7 @@ func getAllMigDevices() []*nvml.Device {
 func (s *migStrategyNone) GetPlugins() []*NvidiaDevicePlugin {
 	return []*NvidiaDevicePlugin{
 		NewNvidiaDevicePlugin(
-			"nvidia.com/gpu",
+			*resourceName,
 			NewGpuDeviceManager(false), // Enumerate device even if MIG enabled
 			"NVIDIA_VISIBLE_DEVICES",
 			pluginapi.DevicePluginPath+"nvidia-gpu.sock"),
@@ -112,7 +112,7 @@ func (s *migStrategySingle) GetPlugins() []*NvidiaDevicePlugin {
 
 	return []*NvidiaDevicePlugin{
 		NewNvidiaDevicePlugin(
-			"nvidia.com/gpu",
+			*resourceName,
 			NewMigDeviceManager(s, "gpu"),
 			"NVIDIA_VISIBLE_DEVICES",
 			pluginapi.DevicePluginPath+"nvidia-gpu.sock"),
@@ -145,7 +145,7 @@ func (s *migStrategyMixed) GetPlugins() []*NvidiaDevicePlugin {
 
 	plugins := []*NvidiaDevicePlugin{
 		NewNvidiaDevicePlugin(
-			"nvidia.com/gpu",
+			*resourceName,
 			NewGpuDeviceManager(true),
 			"NVIDIA_VISIBLE_DEVICES",
 			pluginapi.DevicePluginPath+"nvidia-gpu.sock"),
